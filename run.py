@@ -24,7 +24,7 @@ def get_sales_data():
     while True:
         print("Please enter sales data from the last market.")
         print("Data should be six numbers, seperated by commas.")
-        print("Example: 10,20,30,40,50,60@:\n")
+        print("Example: 10,20,30,40,50,60:\n")
 
         data_str = input("Enter your data here: ")
 
@@ -86,6 +86,16 @@ def calculate_surplus_data(sales_row):
 
     return surplus_data
 
+def update_surplus_worksheet(surplus_data):
+    """
+    Update the surplus worksheet, add new row with surplus data calculated.
+    """
+    print("Updating surplus worksheet...\n")
+    surplus_worksheet = SHEET.worksheet("surplus")
+    surplus_worksheet.append_row(surplus_data)
+    print("Surplus data worksheet updated successfully.\n")
+
+
 
 def main():
     """
@@ -96,6 +106,7 @@ def main():
     update_sales_worksheet(sales_data)
     new_surplus_data = calculate_surplus_data(sales_data)
     print(new_surplus_data)
+    update_surplus_worksheet(new_surplus_data)
 
 print("Welcome to Love Sandwiches Data Automation")
 main()
